@@ -11808,11 +11808,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ProjetoAulas\\RestWhitASP-NetUdemy\\RestWhitASP-NetUdemy2\\RestWhitASP-NetUdemy2\\RestWhitASP-NetUdemy2.csproj",
-      "projectName": "RestWhitASP-NetUdemy2",
-      "projectPath": "D:\\ProjetoAulas\\RestWhitASP-NetUdemy\\RestWhitASP-NetUdemy2\\RestWhitASP-NetUdemy2\\RestWhitASP-NetUdemy2.csproj",
+      "projectUniqueName": "D:\\ProjetoAulas\\RestWhitASP-NetUdemy\\RestWhitASP-NetUdemy2 - Calculadora\\RestWhitASP-NetUdemy2\\RestWhitASPNetUdemy2.csproj",
+      "projectName": "RestWhitASPNetUdemy2",
+      "projectPath": "D:\\ProjetoAulas\\RestWhitASP-NetUdemy\\RestWhitASP-NetUdemy2 - Calculadora\\RestWhitASP-NetUdemy2\\RestWhitASPNetUdemy2.csproj",
       "packagesPath": "C:\\Users\\igor_\\.nuget\\packages\\",
-      "outputPath": "D:\\ProjetoAulas\\RestWhitASP-NetUdemy\\RestWhitASP-NetUdemy2\\RestWhitASP-NetUdemy2\\obj\\",
+      "outputPath": "D:\\ProjetoAulas\\RestWhitASP-NetUdemy\\RestWhitASP-NetUdemy2 - Calculadora\\RestWhitASP-NetUdemy2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",
