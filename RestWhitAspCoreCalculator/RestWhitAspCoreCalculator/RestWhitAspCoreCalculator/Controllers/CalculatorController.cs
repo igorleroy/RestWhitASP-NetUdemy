@@ -10,13 +10,79 @@ namespace RestWhitAspCoreCalculator.Controllers
     //[ApiController]
     public class CalculatorController : Controller
     {
-        [HttpGet("{firstNumber}/{secondNumber}")]
-        public IActionResult sum(string firstNumber, string secondNumber)
+        // GET api/values/sum/5/5
+        [HttpGet("sum/{firstNumber}/{secondNumber}")]
+        public IActionResult Sum(string firstNumber, string secondNumber)
         {
             if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
                 var sum = ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber);
                 return Ok(sum.ToString());
+            }
+
+            return BadRequest("value");
+        }
+
+        // GET api/values/subtraction/5/5
+        [HttpGet("subtraction/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var subtratcion = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+                return Ok(subtratcion.ToString());
+            }
+
+            return BadRequest("value");
+        }
+
+        // GET api/values/division/5/5
+        [HttpGet("division/{firstNumber}/{secondNumber}")]
+        public IActionResult Division(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var division = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                return Ok(division.ToString());
+            }
+
+            return BadRequest("value");
+        }
+
+        // GET api/values/multiplication/5/5
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var multiplication = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(multiplication.ToString());
+            }
+
+            return BadRequest("value");
+        }
+
+        // GET api/values/square-root/5
+        [HttpGet("square-root/{number}")]
+        public IActionResult Mean(string number)
+        {
+            if (IsNumeric(number))
+            {
+                var squareRoot = Math.Sqrt((double)ConvertToDecimal(number));
+                return Ok(squareRoot.ToString());
+            }
+
+            return BadRequest("value");
+        }
+
+        // GET api/values/mean/5
+        [HttpGet("mean/{firstNumber}/{secondNumber}")]
+        public IActionResult Mean(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var mean = (ConvertToDecimal(firstNumber) + ConvertToDecimal(secondNumber)) / 2;
+                return Ok(mean.ToString());
             }
 
             return BadRequest("value");
