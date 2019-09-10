@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace RestWhitAspCoreUdemy.Model
+﻿namespace RestWhitAspCoreUdemy.Model
 {
     public class Person
     {
