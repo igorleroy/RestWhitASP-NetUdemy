@@ -1,0 +1,2 @@
+INSERT INTO rest_with_asp_net_udemy.books VALUES (2, 'Auguto Cury', '2017-09-28 16:10:55.000000', '1', 'Coach');
+INSERT INTO rest_with_asp_net_udemy.books VALUES (3, 'Desconhecido', '2017-09-28 16:10:55.000000', '100', 'Biblia Sagrada');	
