@@ -17,6 +17,9 @@ using RestWhitAspCoreUdemy.Business.Implemetation;
 using RestWhitAspCoreUdemy.Repository;
 using RestWhitAspCoreUdemy.Repository.Implemetation;
 using RestWhitAspCoreUdemy.Repository.Generic;
+using Microsoft.Net.Http.Headers;
+using Tapioca.HATEOAS;
+using RestWhitAspCoreUdemy.Hypermedia;
 
 namespace RestWhitAspCoreCalculator
 {
@@ -56,9 +59,18 @@ namespace RestWhitAspCoreCalculator
                 throw;
             }
 
-            services.AddMvc();
+            services.AddMvc(options =>
+            {
+                options.RespectBrowserAcceptHeader = true;
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));
+            }).AddXmlSerializerFormatters();
 
-            services.AddApiVersioning();
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            services.AddSingleton(filterOptions);
+
+            services.AddApiVersioning(option => option.ReportApiVersions = true);
 
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
@@ -80,7 +92,12 @@ namespace RestWhitAspCoreCalculator
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routers =>
+            {
+                routers.MapRoute(
+                    name: "DefaultApi",
+                    template: "{controller=values}/{id?}");
+            });
         }
     }
 }

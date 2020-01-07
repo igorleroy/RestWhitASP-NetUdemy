@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace RestWhitAspCoreUdemy.Data.VO
 {
     public class BookVO
