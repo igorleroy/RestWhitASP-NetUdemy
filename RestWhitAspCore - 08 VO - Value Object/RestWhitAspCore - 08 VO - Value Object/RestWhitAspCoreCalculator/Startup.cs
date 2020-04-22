@@ -20,6 +20,8 @@ using RestWhitAspCoreUdemy.Repository.Generic;
 using Microsoft.Net.Http.Headers;
 using Tapioca.HATEOAS;
 using RestWhitAspCoreUdemy.Hypermedia;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestWhitAspCoreCalculator
 {
@@ -72,6 +74,15 @@ namespace RestWhitAspCoreCalculator
 
             services.AddApiVersioning(option => option.ReportApiVersions = true);
 
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "RESTful API With ASP.NET Core 2.0",
+                    Version = "v1"
+                });
+            });
+
             services.AddScoped<IPersonBusiness, PersonBusinessImpl>();
             services.AddScoped<IPersonRepository, PersonRepositoryImpl>();
             services.AddScoped<IBookBusiness, BookBusinessImpl>();
@@ -80,16 +91,22 @@ namespace RestWhitAspCoreCalculator
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            if (env.IsDevelopment())
+            loggerFactory.AddConsole(_configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
+
+            var option = new RewriteOptions();
+
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
 
             app.UseHttpsRedirection();
             app.UseMvc(routers =>

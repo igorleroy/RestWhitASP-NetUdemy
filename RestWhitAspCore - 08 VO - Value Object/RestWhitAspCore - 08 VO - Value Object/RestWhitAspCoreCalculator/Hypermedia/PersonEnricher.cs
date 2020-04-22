@@ -12,7 +12,7 @@ namespace RestWhitAspCoreUdemy.Hypermedia
     {
         protected override Task EnrichModel(PersonVO content, IUrlHelper urlHelper)
         {
-            var path = "api/person/v1";
+            var path = "api/persons/v1";
             var url = new { controller = path, id = content.Id };
 
             content.Links.Add(new HyperMediaLink()
